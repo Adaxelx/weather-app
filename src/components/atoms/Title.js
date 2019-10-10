@@ -3,6 +3,8 @@ import styled, { css } from 'styled-components';
 export const Title = styled.h1`
   font-size: ${({ theme }) => theme.fontSize.l};
   color: black;
+  width: 100%;
+  text-align: center;
 
   ${({ main }) =>
     main &&
