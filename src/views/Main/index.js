@@ -14,12 +14,13 @@ const StyledMain = styled.main`
 `;
 
 const Main = () => {
-  const [city, setCity] = useState('');
+  const [message, setMessage] = useState('');
+  const [isClicked, setClicked] = useState(false);
   return (
     <StyledMain>
       <Title main>Weather App</Title>
-      <Search setCity={setCity} />
-      <ListOfCities city={city} />
+      <Search setMessage={setMessage} setClicked={setClicked} />
+      <ListOfCities message={message} isClicked={isClicked} />
     </StyledMain>
   );
 };
