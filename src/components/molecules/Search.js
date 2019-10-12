@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Title } from 'components/atoms/Title';
 import { Input } from 'components/atoms/Input';
 
-const StyledSearch = styled.div`
+const StyledSearch = styled.form`
   width: 95%;
   margin: 20px 0;
   display: flex;
@@ -12,18 +12,32 @@ const StyledSearch = styled.div`
   justify-content: center;
 `;
 
-const StyledButton = styled.button`
+const StyledButton = styled.input`
   background-color: lightgray;
   height: 30px;
   width: 30px;
 `;
 
-const Search = () => (
-  <StyledSearch>
-    <Title>Find your city:</Title>
-    <Input />
-    <StyledButton>Go</StyledButton>
-  </StyledSearch>
-);
+const Search = ({ setCity }) => {
+  const [search, setSeatch] = useState('');
+  const onChange = e => {
+    setSeatch(e.target.value);
+  };
+
+  const onSubmit = e => {
+    e.preventDefault();
+    const FirstLetter = search.charAt(0).toUpperCase();
+    const RestWord = search.slice(1).toLowerCase();
+    const Word = FirstLetter + RestWord;
+    setCity(Word);
+  };
+  return (
+    <StyledSearch>
+      <Title as="legend">Find your city:</Title>
+      <Input value={search} onChange={onChange} />
+      <StyledButton type="submit" onClick={onSubmit} value="Go" />
+    </StyledSearch>
+  );
+};
 
 export default Search;
