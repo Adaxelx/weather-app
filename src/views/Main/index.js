@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Title } from 'components/atoms/Title';
 import Search from 'components/molecules/Search';
+import ListOfCities from 'components/organisms/ListOfCities/ListOfCities';
 
 const StyledMain = styled.main`
   width: 100%;
@@ -12,11 +13,15 @@ const StyledMain = styled.main`
   align-items: center;
 `;
 
-const Main = () => (
-  <StyledMain>
-    <Title main>Weather App</Title>
-    <Search />
-  </StyledMain>
-);
+const Main = () => {
+  const [city, setCity] = useState('');
+  return (
+    <StyledMain>
+      <Title main>Weather App</Title>
+      <Search setCity={setCity} />
+      <ListOfCities city={city} />
+    </StyledMain>
+  );
+};
 
 export default Main;
